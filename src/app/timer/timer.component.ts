@@ -54,19 +54,21 @@ export class TimerComponent implements OnInit {
     }
   }
 
-  // method to change the timer type (pomodor/short break/ long break)
+  // method to change the timer type (pomodor/short break/long break)
   changeType(timerType:string){
     if(this.timerType != timerType){
-      this.timerType = timerType
+      
       if(this.timerStatus === "Running"){
         let isSure:boolean = confirm("The timer will reset. Are you sure you want to do this?")
         if(isSure){
           this.stopTimer()
           this.timerStatus = 'Stopped'
+          this.timerType = timerType
           this.updateDetailsByType()
         }
       }
       else{
+        this.timerType = timerType
         this.timerStatus = 'Stopped'
         this.updateDetailsByType()
       }

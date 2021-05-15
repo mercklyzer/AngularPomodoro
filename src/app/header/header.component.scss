@@ -1,7 +1,7 @@
 @import '../../styles.scss';
 
 .navbar{
-    height: 50px;
+    height: 60px;
 
     // flex
     align-items: center;
@@ -26,7 +26,7 @@
             // font
             color: darken($darkblue, 5);
             font-family: 'Roboto', sans-serif;
-            font-size: 14px;
+            font-size: 18px;
             font-weight: 700;
             letter-spacing: 1.2px;
             text-transform: uppercase;
@@ -52,6 +52,10 @@
                 align-items: center;
                 display: flex;
 
+                @media screen and (max-width: 550px){
+                    padding: 0 10px;
+                }
+
                 &:hover{
                     cursor: pointer;
                     .navbar-item-text{
@@ -63,7 +67,7 @@
                     // font
                     color: #515c61;
                     font-family: 'Roboto', sans-serif;
-                    font-size: 10px;
+                    font-size: 14px;
                     font-weight: 600;
                     letter-spacing: 1.1px;
                     text-transform: uppercase;

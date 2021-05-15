@@ -4,16 +4,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
+    padding: 0px 20px;
     .timer-wrapper{
-        padding: 20px 40px;
+        padding: 20px 60px;
         background-color: rgba(255,255,255,0.8);
         border-radius: 10px;
-        margin: 0px 20px;
+        margin: 0px 40px;
         align-items: center;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        align-items: center;
+
+        @media screen and (max-width: 550px){
+            padding: 20px 40px;
+        }
 
         .timer-options{
             display: flex;
@@ -27,7 +32,7 @@
 
                 // font
                 font-family: 'Monsterrat', sans-serif;
-                font-size: 12px;
+                font-size: 16px;
                 font-weight: 600;
                 text-align: center;
                 color: $darkgreen;
@@ -39,6 +44,9 @@
 
                 transition: 0.2s ease-in-out;
 
+                @media screen and (max-width: 550px){
+                    font-size: 4vw;
+                }
 
                 &:hover{
                     cursor: pointer;
@@ -48,20 +56,29 @@
 
         .timer-countdown{
             font-family: 'Roboto Mono', monospace;
-            font-size: 72px;
+            font-size: 110px;
             font-weight: 600;
             color: $darkgreen;
             margin-bottom: 24px;
+
+            @media screen and (max-width: 550px){
+                font-size: 20vw;
+            }
         }
 
         .timer-btn{
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 10px 30px;
+            font-size: 20px;
             font-weight: 600;
             border: 2px solid $darkgreen;
             border-radius: 6px;
             background: none;
             transition: background-color 0.2s ease-in-out;
+            color: $darkgreen;
+
+            @media screen and (max-width: 550px){
+                font-size: 5vw;
+            }
 
             &:hover{
                 background-color: $darkgreen;
