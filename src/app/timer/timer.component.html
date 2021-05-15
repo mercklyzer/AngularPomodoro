@@ -1,0 +1,13 @@
+<div class="timer-container">
+    <div class="timer-wrapper">
+        <div class="timer-options">
+            <span class="timer-option" [ngClass]="{'active':timerType === 'Pomodoro'}" (click)="changeType('Pomodoro')">Pomodoro</span>
+            <span class="timer-option" [ngClass]="{'active':timerType === 'Short'}" (click)="changeType('Short')">Short Break</span>
+            <span class="timer-option" [ngClass]="{'active':timerType === 'Long'}" (click)="changeType('Long')">Long Break</span>
+        </div>
+        <div class="timer-countdown">{{getMins()}}:{{getSecs()}}</div>
+        <button class="timer-btn" (click)="toggleTimer()">
+            {{(timerStatus == 'Running' || timerStatus == 'Alarm') ? 'Stop' : 'Start'}}
+        </button>
+    </div>
+</div>
