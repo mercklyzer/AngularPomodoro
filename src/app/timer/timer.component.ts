@@ -102,20 +102,28 @@ export class TimerComponent implements OnInit {
     clearInterval(this.x)
     if(this.timerStatus === 'Alarm'){
       this.alarm.loop = false
-      this.alarm.stop()
+      this.alarm.pause()
+      this.alarm.currentTime = 0
       this.timerStatus = 'Stopped'
     }
   }
 
   // used in displaying the text in the button
   toggleTimer(){
-    if(this.timerStatus === 'Stopped'){
-      this.startTimer()
-      this.timerStatus = 'Running'
-    }
-    else{
+    if(this.timerStatus === 'Running'){
+      console.log("stopping alarm")
       this.stopTimer()
       this.timerStatus = 'Stopped'
+    }
+    else if(this.timerStatus === 'Alarm'){
+      this.stopTimer()
+      this.timerStatus = 'Stopped'
+      this.updateDetailsByType()
+
+    }
+    else{
+      this.startTimer()
+      this.timerStatus = 'Running'
     }
   }
   // END - TIMER START/STOP/TOGGLE METHODS

@@ -7,7 +7,7 @@
         </div>
         <div class="timer-countdown">{{getMins()}}:{{getSecs()}}</div>
         <button class="timer-btn" (click)="toggleTimer()">
-            {{(timerStatus == 'Running' || timerStatus == 'Alarm') ? 'Stop' : 'Start'}}
+            {{(timerStatus === 'Running' || timerStatus === 'Alarm') ? 'Stop' : 'Start'}}
         </button>
     </div>
 </div>

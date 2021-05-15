@@ -17,6 +17,10 @@
         align-items: center;
         justify-content: space-between;
 
+        @media screen and (max-width: 550px){
+            margin: 0 40px;
+        }
+
         .brand{
             height: 100%;
             padding: 0 10px;
