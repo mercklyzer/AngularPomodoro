@@ -6,7 +6,7 @@
             <span class="timer-option" [ngClass]="{'active':timerType === 'Long'}" (click)="changeType('Long')">Long Break</span>
         </div>
         <div class="timer-countdown">{{getMins()}}:{{getSecs()}}</div>
-        <button class="timer-btn" (click)="toggleTimer()">
+        <button class="timer-btn btn" (click)="toggleTimer()">
             {{(timerStatus === 'Running' || timerStatus === 'Alarm') ? 'Stop' : 'Start'}}
         </button>
     </div>

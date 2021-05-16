@@ -1,0 +1,4 @@
+<div class="modal" 
+    [ngStyle]="{'z-index': (showSettings? '100' : '-100'), 'visibility': (showSettings? 'visible' : 'hidden')}">
+    <app-settings [timerMins]='timerMins' (timerMinsChange)='onTimerMinsChange($event)'></app-settings>
+</div>

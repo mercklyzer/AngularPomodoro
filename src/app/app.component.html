@@ -1,4 +1,5 @@
-<app-header></app-header>
+<app-modal [timerMins]="timerMins" [showSettings]="showSettings" (timerMinsChange)="updateTimerMins($event)"></app-modal>
+<app-header (showSettings)="onSettings()"></app-header>
 <div class="main-body">
-    <app-timer></app-timer>
+    <app-timer [timerMins]="timerMins"></app-timer>
 </div>

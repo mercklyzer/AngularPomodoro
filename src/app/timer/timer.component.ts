@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { timer } from 'rxjs';
+import { TimerMins } from '../models/timerMins.model';
 
 
 @Component({
@@ -6,21 +8,23 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.scss']
 })
-export class TimerComponent implements OnInit {
-  // MINS and SECS to be displayed
-  mins:number = 25
-  secs:number = 0
+export class TimerComponent implements OnInit, OnChanges {
+  @Input() timerMins:TimerMins = new TimerMins(25,10,5)
 
   // status of the timer = Running/Stopped/Alarm
   timerStatus:string = "Stopped"
   // types of the timer = Pomodoro/Short/Long
   timerType:string = "Pomodoro"
 
+  // MINS and SECS to be displayed
+  mins:number = this.timerType === 'Pomodoro'? this.timerMins.pomodoroMins : (this.timerType === 'Short'? this.timerMins.shortMins: this.timerMins.longMins)
+  secs:number = 0
+
   // details on each type
   timerTypeArray:Array<any> = [
-    { type: 'Pomodoro', mins: 25, secs: 0},
-    { type: 'Short', mins: 5, secs: 0},
-    { type: 'Long', mins: 10, secs: 0}
+    { type: 'Pomodoro', mins: this.timerMins.pomodoroMins, secs: 0},
+    { type: 'Short', mins: this.timerMins.shortMins, secs: 0},
+    { type: 'Long', mins: this.timerMins.longMins, secs: 0}
   ]
 
   // alarm to be played if time is up
@@ -28,7 +32,12 @@ export class TimerComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+  ngOnChanges(changes:SimpleChanges):void{
+    console.log(changes)
+    this.timerMins = changes.timerMins.currentValue
+    this.updateTimerTypeArray()
+    this.updateDetailsByType()
   }
 
   // START - Return MINS and SECS to be displayed on the template
@@ -43,7 +52,16 @@ export class TimerComponent implements OnInit {
   }
   // END - Return MINS and SECS to be displayed on the template
 
-  // updates the mins and secs property depending on the timer type
+  // updates the timer type array. This is called when the @Input() is changed
+  updateTimerTypeArray(){
+    this.timerTypeArray = [
+      { type: 'Pomodoro', mins: this.timerMins.pomodoroMins, secs: 0},
+      { type: 'Short', mins: this.timerMins.shortMins, secs: 0},
+      { type: 'Long', mins: this.timerMins.longMins, secs: 0}
+    ]
+  }
+
+  // updates the mins and secs property depending on the CURRENT timer type
   updateDetailsByType(){
     for(var obj of this.timerTypeArray){
       if(obj.type === this.timerType){
@@ -52,6 +70,7 @@ export class TimerComponent implements OnInit {
         break
       }
     }
+    console.log("mins:" + this.mins)
   }
 
   // method to change the timer type (pomodor/short break/long break)
@@ -68,8 +87,8 @@ export class TimerComponent implements OnInit {
         }
       }
       else{
-        this.timerType = timerType
         this.timerStatus = 'Stopped'
+        this.timerType = timerType
         this.updateDetailsByType()
       }
     }

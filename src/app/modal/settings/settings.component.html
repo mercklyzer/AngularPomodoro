@@ -1,0 +1,29 @@
+<div class="wrapper">
+    <div class="settings-header">
+        TIMER SETTING
+    </div>
+    <form #itemForm="ngForm" (submit)="onSubmit(itemForm)" class="settings-form">
+        <div class="form-section">
+            <span class="form-header">
+                Time (minutes)
+            </span>
+            <div class="form-inputs-container">
+                <div class="form-input-group">
+                    <label class="form-label">Pomodoro</label>
+                    <input name="pomodoroMins" type="number" class="form-input" [ngModel]="timerMins.pomodoroMins"/>
+                </div>
+                <div class="form-input-group">
+                    <label class="form-label">Short Break</label>
+                    <input name="shortMins" type="number" class="form-input" [ngModel]="timerMins.shortMins"/>
+                </div>
+                <div class="form-input-group">
+                    <label class="form-label">Long Break</label>
+                    <input name="longMins" type="number" class="form-input" [ngModel]="timerMins.longMins"/>
+                </div>
+            </div>
+        </div>
+        <div class="button">
+            <button class="btn-submit btn" type="submit">Save</button>
+        </div>
+    </form>
+</div>
